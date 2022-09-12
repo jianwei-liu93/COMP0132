@@ -1,0 +1,32 @@
+<launch>
+    
+
+    <!-- <node pkg="unitree_legged_real" type="twist_sub" name="node_twist_sub"/> -->
+    <!-- <node pkg="unitree_legged_real" type="control_via_keyboard" name="node_control_via_keyboard"/> -->
+
+    <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="node_control_via_keyboard" args="_key_timeout:=0.1"
+    output="screen"/>
+
+    <node pkg="unitree_legged_real" type="robot_state" name="robot_state_sub" output="screen"/>
+
+
+    <param name="robot_description" command="$(find xacro)/xacro '$(find go1_description)/xacro/robot.xacro'
+        DEBUG:=false"/>
+
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+        <param name="publish_frequency" type="double" value="100.0"/>
+    </node>
+
+    <node pkg="rviz" type="rviz" name="rviz" respawn="false" output="screen"
+        args="-d $(find unitree_legged_real)/rviz/robot_state.rviz"/>
+
+
+    <!-- Call SEROW -->
+    <node pkg="serow" type="serow" name="serow" respawn="true" output="screen" >
+        ### Load configurations from YAML file to parameter server 
+        <rosparam file="$(find unitree_legged_real)/config/serow_estimation_params_go1.yaml" command="load" 
+            subst_value="True"/> 
+    </node>
+
+</launch>

@@ -1,0 +1,19 @@
+<launch>
+    
+    <node pkg="unitree_legged_real" type="robot_state" name="robot_state_sub" output="screen"/>
+
+
+<!--     <param name="robot_description" command="$(find xacro)/xacro '$(find go1_description)/xacro/robot.xacro'
+        DEBUG:=false"/>
+
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+        <param name="publish_frequency" type="double" value="100.0"/>
+    </node>
+ -->
+    <node pkg="rviz" type="rviz" name="rviz" respawn="false" output="screen"
+        args="-d $(find unitree_legged_real)/rviz/2d_planner.rviz"/>
+
+
+
+</launch>

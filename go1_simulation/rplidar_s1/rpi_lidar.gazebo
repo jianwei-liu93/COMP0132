@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<robot name="rplidar_gazebo" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+          <robotParam>robot_description</robotParam>
+          <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+          <controlPeriod>0.001</controlPeriod>
+        </plugin>
+    </gazebo>
+
+    <gazebo reference="rp_lidar_link">
+       <selfCollide>False</selfCollide>
+    </gazebo>
+
+        <gazebo reference="laser_link">
+          <sensor type="gpu_ray" name="RPLidar_ray">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+            <ray>
+              <scan>
+                <horizontal>
+                  <samples>720</samples>
+                  <resolution>0.5</resolution>
+                  <min_angle>-3.14159265359</min_angle>
+                  <max_angle>3.14159265359</max_angle>
+                </horizontal>
+              </scan>
+              <range>
+                <min>0.04</min>
+                <max>30.0</max>
+                <resolution>0.02</resolution>
+              </range>
+              <noise>
+                <type>gaussian</type>
+                <mean>0.0</mean>
+                <stddev>0.01</stddev>
+              </noise>
+            </ray>
+            <plugin name="RPLidar_controller" filename="libgazebo_ros_gpu_laser.so">
+              <topicName>scan</topicName>
+              <frameName>laser_link</frameName>
+            </plugin>
+          </sensor>
+        </gazebo>
+</robot>

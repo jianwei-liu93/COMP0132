@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="your_robot">
+
+  <link
+    name="rp_lidar">
+    <inertial>
+      <origin
+        xyz="-0.000198132606016629 -2.26491167751308E-07 0.032151766628421"
+        rpy="0 0 0" />
+      <mass
+        value="0.00948980643104447" />
+      <inertia
+        ixx="3.81307411379048E-06"
+        ixy="1.28379500896677E-10"
+        ixz="-9.92117688332497E-10"
+        iyy="3.81193047274514E-06"
+        iyz="3.40285837619724E-11"
+        izz="4.93177436283519E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://xnav_description/meshes/rp_lidar_fixed.stl" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+  </link>
+   <link
+    name="laser_link">
+    <inertial>
+      <origin
+        xyz="0.00019862523050352 4.52848375256942E-08 -0.00484823337157906"
+        rpy="0 0 0" />
+      <mass
+        value="0.0094898064310445" />
+      <inertia
+        ixx="3.81307411379049E-06"
+        ixy="1.28379500917747E-10"
+        ixz="9.9211768831565E-10"
+        iyy="3.81193047274516E-06"
+        iyz="-3.40285837588616E-11"
+        izz="4.93177436283522E-06" />
+    </inertial>
+  </link>
+    <joint
+    name="laser"
+    type="fixed">
+    <origin
+      xyz="0 0 0.037"
+      rpy="0 0 3.14159265358979" />
+    <parent
+      link="rp_lidar" />
+    <child
+      link="laser_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+    <joint
+    name="rp_lidar_link"
+    type="fixed">
+    <origin
+      xyz="0 0.0334995073755199 -0.0272000000000168"
+      rpy="0 0 1.57079632679473" />
+    <parent
+      link="xnav_top" />
+    <child
+      link="rp_lidar" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>
