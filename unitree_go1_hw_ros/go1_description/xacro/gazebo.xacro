@@ -132,7 +132,7 @@
         </sensor>
     </gazebo> -->
 
-  <gazebo reference="depthCamera_link_left">
+<!--   <gazebo reference="depthCamera_link_left">
     <sensor name="camera_link_camera" type="depth">
       <update_rate>20</update_rate>
       <camera>
@@ -174,7 +174,7 @@
     </sensor>
   </gazebo>
 
-
+ -->
 
 
 

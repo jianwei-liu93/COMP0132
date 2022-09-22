@@ -12,6 +12,9 @@
     <xacro:include filename="$(find go1_description)/xacro/Accessories/rplidar.xacro"/>
 
     <xacro:property name="M_PI" value="3.1415926535897931" />
+    
+    <xacro:arg name="with_lidar" default="true" />
+    <xacro:arg name="DEBUG" default="false" />
 
 
     <!-- Rollover Protection mode will add an additional stick on the top, use "true" or "false" to switch it. -->
@@ -190,7 +193,10 @@
         <origin rpy="0 0 0" xyz="0.2747 0.0 -0.0088"/>
     </xacro:ultraSound>
 
-    <xacro:rplidar>
-        <origin xyz="0.140468617087559 0 0.057" rpy="0 0 0.000119868886667814"/>
-    </xacro:rplidar>
+    <xacro:if value="$(arg with_lidar)">
+        <xacro:rplidar>
+            <origin xyz="0.140468617087559 0 0.057" rpy="0 0 0.000119868886667814"/>
+        </xacro:rplidar>
+    </xacro:if>
+
 </robot>
